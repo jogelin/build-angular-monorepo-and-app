@@ -1,0 +1,49 @@
+{
+    "name": "@bamaa/monorepo",
+    "version": "0.0.1",
+    "private": true,
+    "description": "",
+    "homepage": "",
+    "bugs": "",
+    "author": "jonathan.gelin@sodexo.com",
+    "license": "MIT",
+    "scripts": {
+        "clean:dist": "rimraf ./dist",
+        "exec": "ts-node scripts/exec.ts",
+
+        "libs:link": "yarn run exec -- yarn link",
+        "libs:unlink": "yarn run exec -- yarn unlink",
+
+        "postinstall": "ts-node scripts/install.ts",
+
+        "build": "ts-node scripts/build.ts"
+
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:jogelin/build-angular-monorepo-and-app.git"
+    },
+    "devDependencies": {
+        "@angular/common": "^4.0.0-beta.7",
+        "@angular/compiler": "^4.0.0-beta.7",
+        "@angular/compiler-cli": "^4.0.0-beta.7",
+        "@angular/core": "^4.0.0-beta.7",
+        "@angular/forms": "^4.0.0-beta.7",
+        "@angular/http": "^4.0.0-beta.7",
+        "@angular/language-service": "^2.4.7",
+        "@angular/platform-browser": "^4.0.0-beta.7",
+        "@angular/platform-server": "^4.0.0-beta.7",
+        "@angular/router": "^4.0.0-beta.7",
+        "@types/node": "^7.0.5",
+        "bash-color": "^0.0.4",
+        "npm-run-all": "^4.0.1",
+        "rimraf": "^2.5.4",
+        "rollup": "^0.41.4",
+        "rollup-plugin-node-resolve": "^2.0.0",
+        "rxjs": "^5.1.1",
+        "shelljs": "^0.7.6",
+        "ts-node": "^2.1.0",
+        "typescript": "^2.1.6",
+        "zone.js": "^0.7.6"
+    }
+}
