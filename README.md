@@ -96,11 +96,11 @@ Today, even there are linked, yarn doesn't support libraries that are not found 
 ### TODO
 #### Steps :
 
-###### 1. Make it work with lib-1 : OK with npm link on the monorepo/dist/lib-1
-###### 2. Make it work with lib-2 : NOT OK with npm link on the monorepo/dist/lib-1 !! Should we need to copy the node_modules folder during the build of create a syslink ?
-###### 3. Make it work with lib-3
-###### 4. Make it work with lib-4
-###### 5. Make it work with lib-5
+##### 1. Make it work with lib-1 : OK with npm link on the monorepo/dist/lib-1
+##### 2. Make it work with lib-2 : NOT OK with npm link on the monorepo/dist/lib-2 !! Should we need to copy the node_modules folder during the build of create a syslink ?
+##### 3. Make it work with lib-3
+##### 4. Make it work with lib-4
+##### 5. Make it work with lib-5
 
 #### Improvments/Constraints :
 * For now, list and the order of libs are specified in the scripts/common.js. I should be better to scan packages dynamically and order the build based on the internal dependencies
