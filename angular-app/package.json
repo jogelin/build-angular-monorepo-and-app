@@ -9,8 +9,8 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "libs:link": "yarn link @bamaa/lib-1 & yarn link @bamaa/lib-2",
-        "libs:unlink": "yarn unlink @bamaa/lib-1 & yarn unlink @bamaa/lib-2"
+        "link:internal": "yarn link @bamaa/lib-1 & yarn link @bamaa/lib-2",
+        "unlink:internal": "yarn unlink @bamaa/lib-1 & yarn unlink @bamaa/lib-2"
     },
     "private": true,
     "dependencies": {
@@ -25,7 +25,8 @@
         "core-js": "^2.4.1",
         "rxjs": "^5.1.0",
         "zone.js": "^0.7.6",
-        "@bamaa/lib-1": "0.0.1"
+        "@bamaa/lib-1": "0.0.1",
+        "@bamaa/lib-2": "0.0.2"
     },
     "devDependencies": {
         "@angular/cli": "1.0.0-beta.32.3",

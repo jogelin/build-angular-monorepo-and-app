@@ -1,7 +1,7 @@
 {
-  "name": "@bamaa/lib-2",
+  "name": "@bamaa/lib-3",
   "version": "0.0.1",
-  "description": "Library 2",
+  "description": "Library 3",
   "main": "index.js",
   "typings": "index.d.js",
   "private": false,
@@ -9,10 +9,9 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^4.0.0-beta.7",
-    "@angular/http": "^4.0.0-beta.7",
     "rxjs": "5.1.1"
   },
   "dependencies": {
-    "ng2-translate": "^5.0.0"
+    "@bamaa/lib-1": "0.0.1"
   }
 }

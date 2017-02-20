@@ -6,7 +6,8 @@ export const cfg = {
     //order is important depending to the dependencies
     MODULES: [
         'lib-1',
-        'lib-2'
+        'lib-2',
+        'lib-3'
     ],
     MODULES_PATH: './packages',
     DIST_PATH: `../../dist`

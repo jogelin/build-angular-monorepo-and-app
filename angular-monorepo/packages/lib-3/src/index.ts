@@ -1,0 +1,1 @@
+export * from './lib-3.module';
