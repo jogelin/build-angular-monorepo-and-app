@@ -10,16 +10,16 @@ export const cfg = {
         'lib-3'
     ],
     MODULES_PATH: './packages',
-    DIST_PATH: `../../dist`
+    DIST_PATH: `./dist`
 };
 
-export const doAll = (todo:Function) => {
+export const doAll = (todo:Function, todoPath:string) => {
     cfg.MODULES.forEach(moduleName => {
 
         const modulePath = `${cfg.MODULES_PATH}/${moduleName}`;
         const moduleDistPath = `${cfg.DIST_PATH}/${moduleName}`;
 
-        cd(modulePath);
+        cd(`${todoPath}/${moduleName}`);
 
         console.log(`${color.green('======>')} ${color.purple(moduleName.toUpperCase())}`);
 

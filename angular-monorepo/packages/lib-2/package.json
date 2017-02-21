@@ -2,10 +2,11 @@
   "name": "@bamaa/lib-2",
   "version": "0.0.2",
   "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.js",
-  "private": false,
-  "author": "jonathan.gelin@sodexo.com",
+  "main": "index.umd.js",
+  "jsnext:main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "author": "Jonathan Gelin <jonathan.gelin@sodexo.com>",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^4.0.0-beta.7",
@@ -14,11 +15,5 @@
   },
   "dependencies": {
     "ng2-translate": "^5.0.0"
-  },
-  "homepage": "",
-  "bugs": "",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:jogelin/build-angular-monorepo-and-app.git"
   }
 }
