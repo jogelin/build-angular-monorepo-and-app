@@ -2,8 +2,13 @@ import {exec, cp, exit} from 'shelljs';
 import {readFileSync, writeFileSync} from 'fs';
 import {log, doAll, cfg} from './common';
 
-const copyPackage = (modulePath, moduleDistPath) => {
-    log.info('BUNDLE PACKAGE FILE', 'copy to dist');
+const copy = (modulePath, moduleDistPath) => {
+    copyPackage(moduleDistPath);
+    copyReadme(moduleDistPath);
+};
+
+const copyPackage = (moduleDistPath) => {
+    log.info('COPY PACKAGE FILE', 'copy to dist');
 
     cp(`package.json`, `./../../${moduleDistPath}/package.json`);
 
@@ -16,4 +21,11 @@ const copyPackage = (modulePath, moduleDistPath) => {
     writeFileSync(packageFile, JSON.stringify(packageJson, null, 2));
 };
 
-doAll(copyPackage, cfg.MODULES_PATH);
+const copyReadme = (moduleDistPath) => {
+    log.info('COPY README FILE', 'copy to dist');
+
+    cp(`README.md`, `./../../${moduleDistPath}/README.md`);
+
+};
+
+doAll(copy, cfg.MODULES_PATH);
