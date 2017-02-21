@@ -59,6 +59,7 @@ Today, even there are linked, yarn doesn't support libraries that are not found 
 * avoiding scripts with hardcoded libs names
 * having one tsconfig per lib...but with ngc on lib-3, they are strange duplications
 * be able to publish
+* remove dependency to ng2-translate in the angular-app
 
 ## Useful articles about mono repo :
 
