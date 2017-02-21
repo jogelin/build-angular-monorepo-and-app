@@ -53,14 +53,14 @@ The goal is to be able to build all packages in a single command : npm run build
 
 Today, even there are linked, yarn doesn't support libraries that are not found on the registry. A hack is to remove dependencies from the package.json, do the yarn install and recreate the package.json...
 
-#### Improvments/Constraints :
+## TODO/Constraints :
 * AOT compatible
 * links between app and monorepo
 * avoiding scripts with hardcoded libs names
 * having one tsconfig per lib...but with ngc on lib-3, they are strange duplications
 * be able to publish
 
-#### Useful articles about mono repo :
+## Useful articles about mono repo :
 
 [New wave modularity with Lerna, monorepos, and npm organizations](http://www.macwright.org/2016/07/08/lerna-npm-organizations-new-wave-modularity.html)
 : *Article explaining the problematic and how npm organization works*
