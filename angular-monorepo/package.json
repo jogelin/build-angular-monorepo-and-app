@@ -25,8 +25,8 @@
         "package": "npm run all -- \"rollup -c rollup.config.js\"",
         "build": "npm-run-all clean transpile package",
         "postbuild": "ts-node ./scripts/copy.ts",
-        "prepublish": "oao prepublish -s ./packages/*/",
-        "publish": "oao publish -s ./packages/*/"
+        "beforepublish": "oao prepublish -s ./packages/*/",
+        "publish": "oao publish -s ./packages/*/ --no-confirm"
     },
     "repository": {
         "type": "git",
