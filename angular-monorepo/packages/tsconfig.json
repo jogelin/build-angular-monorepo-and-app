@@ -8,29 +8,32 @@
         "noImplicitAny": true,
         "module": "es2015",
         "moduleResolution": "node",
-        "outDir": "./dist",
+        "outDir": "../dist",
         "sourceMap": false,
         "inlineSources": false,
         "target": "es5",
         "skipLibCheck": true,
+        "rootDir": ".",
         "lib": [
             "es2015",
             "dom"
         ],
         "paths": {
             "@angular/*": [
-                "../../node_modules/@angular/*"
+                "../node_modules/@angular/*"
             ],
             "rxjs/*": [
-                "../../node_modules/rxjs/*"
+                "../node_modules/rxjs/*"
+            ],
+            "@bamaa/*": [
+                "./*"
             ]
         },
-        "typeRoots": ["../../node_modules/@types"]
+        "typeRoots": ["../node_modules/@types"]
     },
-    "files": [
-        "index.ts"
-    ],
+
     "angularCompilerOptions": {
+        "genDir":"../dist",
         "strictMetadataEmit": true,
         "skipTemplateCodegen ": true
     }

@@ -1,6 +1,8 @@
 import resolve from "rollup-plugin-node-resolve";
 
 export default {
+    entry: '../../dist/lib-2/index.js',
+    dest: '../../dist/lib-2/index.umd.js',
     format: 'umd',
     moduleName: 'bamaa.lib-2',
     plugins: [
@@ -14,6 +16,7 @@ export default {
         "@angular/core",
         "@angular/http",
         "rxjs",
+        "rxjs/Observable",
         "ng2-translate"
     ],
     onwarn: (warning) => {

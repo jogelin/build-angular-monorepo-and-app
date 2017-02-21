@@ -13,14 +13,20 @@
         }
     },
     "scripts": {
+        "clean": "npm-run-all --parallel clean:*",
         "clean:dist": "rimraf ./dist",
-        "exec": "ts-node scripts/exec.ts",
-        "libs:link": "yarn run exec -- yarn link",
-        "libs:unlink": "yarn run exec -- yarn unlink",
-        "bootstrap": "oao bootstrap",
-        "build": "ts-node scripts/build.ts",
-        "teste": "ts-node scripts/config.ts",
-        "all": "oao all"
+        "clean:ng": "rimraf ./**/*.ngsummary.json & rimraf ./**/*.ngfactory.ts",
+        "clean:log": "rimraf ./**/*.log",
+        "all": "oao all -s ./packages/*/",
+        "link:all": "npm run all -- \"yarn link --offline\"",
+        "unlink:all": "npm run all \"yarn unlink --offline\"",
+        "bootstrap": "oao bootstrap -s ./packages/*/",
+        "transpile": "ngc -p ./packages/tsconfig.json",
+        "package": "npm run all -- \"rollup -c rollup.config.js\"",
+        "build": "npm-run-all clean transpile package",
+        "postbuild": "ts-node ./scripts/copy.ts",
+        "prepublish": "oao prepublish -s ./packages/*/",
+        "publish": "oao publish -s ./packages/*/"
     },
     "repository": {
         "type": "git",
@@ -41,7 +47,7 @@
         "bash-color": "^0.0.4",
         "glob": "^7.1.1",
         "npm-run-all": "^4.0.1",
-        "oao": "^0.5.2",
+        "oao": "^0.5.3",
         "rimraf": "^2.5.4",
         "rollup": "^0.41.4",
         "rollup-plugin-node-resolve": "^2.0.0",

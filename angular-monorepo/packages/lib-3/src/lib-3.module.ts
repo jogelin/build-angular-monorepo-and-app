@@ -2,35 +2,21 @@
  * Created by JGE on 17/01/2017.
  */
 import {NgModule, Optional, SkipSelf} from '@angular/core';
-import {HttpModule, Http} from '@angular/http';
-import {
-    TranslateStaticLoader,
-    TranslateLoader,
-    TranslateModule,
-    TranslatePipe,
-    TranslateDirective
-} from 'ng2-translate';
+import {HttpModule} from '@angular/http';
+import {Lib2Module} from '@bamaa/lib-2';
 
-export function translateLoaderFactory(http: Http) {
-    return new TranslateStaticLoader(http, './assets/i18n', '.json');
-}
 
 @NgModule({
     imports: [
         HttpModule,
-        TranslateModule.forRoot({
-            provide: TranslateLoader,
-            useFactory: (translateLoaderFactory),
-            deps: [Http]
-        })
+        Lib2Module
     ],
     providers: [],
     exports: [
-        TranslatePipe,
-        TranslateDirective
+
     ]
 })
-export class Lib2Module {
+export class Lib3Module {
 
     constructor(@Optional() @SkipSelf() parentModule: Lib2Module) {
         if (parentModule) {

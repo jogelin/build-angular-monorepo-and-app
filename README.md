@@ -23,9 +23,13 @@ npm install yarn -g
 ```
 $ yarn
 ```
-2. Build each **package** :
+2. Bootstrap each **package** :
 ```
-$ yarn run build
+$ yarn bootstrap
+```
+3. Build each **package** :
+```
+$ yarn build
 ```
 This build script will do (NOT FINISHED : missing links between libs, etc...,) :
 ```
@@ -43,10 +47,6 @@ $ ngc
 ```
 $ rollup -c rollup.config.js ${moduleDistPath}/index.js > ${moduleDistPath}/index.umd.js
 ```
-```
-$ cp package.json ${moduleDistPath}/package.json
-```
-3. Link each package
 ```
 $ cp package.json ${moduleDistPath}/package.json
 ```

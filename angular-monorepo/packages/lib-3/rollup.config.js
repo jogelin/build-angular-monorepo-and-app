@@ -1,6 +1,8 @@
 import resolve from "rollup-plugin-node-resolve";
 
 export default {
+    entry: '../../dist/lib-3/index.js',
+    dest: '../../dist/lib-3/index.umd.js',
     format: 'umd',
     moduleName: 'bamaa.lib-3',
     plugins: [
@@ -13,7 +15,9 @@ export default {
     external: [
         "@angular/core",
         "rxjs",
-        "@bamaa/lib-1"
+        "rxjs/Observable",
+        "@bamaa/lib-1",
+        "@bamaa/lib-2"
     ],
     onwarn: (warning) => {
         const skip_codes = [
