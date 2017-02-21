@@ -23,38 +23,20 @@ npm install yarn -g
 ```
 $ yarn
 ```
-2. Bootstrap each **package** :
+2. Bootstrap **package** :
 ```
 $ yarn bootstrap
 ```
-3. Build each **package** :
+3. Build **package** :
 ```
 $ yarn build
 ```
-This build script will do (NOT FINISHED : missing links between libs, etc...,) :
-```
-$ rimraf dist/
-```
-```
-$ rimraf build/
-```
-```
-$ yarn install
-```
-```
-$ ngc
-```
-```
-$ rollup -c rollup.config.js ${moduleDistPath}/index.js > ${moduleDistPath}/index.umd.js
-```
-```
-$ cp package.json ${moduleDistPath}/package.json
-```
+4. Post Build copy package.json in dist
 
 #### angular-app
 1. Link to libs
 ```
-$ yarn run libs:link
+$ yarn run link:internal
 ```
 2. Run the app
 ```
@@ -64,54 +46,19 @@ $ npm start (would like to use yarn but it check the lib on the registry even if
 ### Monorepo :
 The goal is to be able to build all packages in a single command : npm run build
 
-## Brainstorm
-### Links
-#### Link between dependencies inside a monorepo
-During development
-During the build
-#### Link between app to the monorepo dependencies
-During development
+## Tools
 
-#### Type of links :
-  * npm link : links through the npm cache :
-    * +see the real folder
-    * +can modify files directly
-    * ---can erase file of the other project
-    * ---always need to link in lib and app and unlink in lib and app
-  * shortcut : system link :
-    * +light
-    * -doesn't rebuild automatically if app serve
-  * copy file in the node_modules
-    * +independent
-    * -need to watch other project file and copy manually
+### OAO
+[OAO](https://github.com/guigrpa/oao) is a lerna like using yarn and it support almost what we want to do. A packaging phase is missing
 
-### Lerna
-Lerna is the first tool when we think "monorepo". But after some tests (a lot..), it is doing too much things...I prefer a simple way and add option/plugins to do more.
-
-### Yerna
-[Yerna](https://github.com/palantir/yerna) is a lerna like using yarn and it support almost what we want to do but they are bugs and it's unix oriented.
-
-Today, even there are linked, yarn doesn't support libraries that are not found on the registry. A hack is to remove dependencies from the package.json, do the yarn install and recreate the package.json...more info the the Yarn README file
-
-### TODO
-#### Steps :
-
-##### 1. Make it work with lib-1 : OK with npm link on the monorepo/dist/lib-1
-##### 2. Make it work with lib-2 : NOT OK with npm link on the monorepo/dist/lib-2 !! Should we need to copy the node_modules folder during the build of create a syslink ?
-##### 3. Make it work with lib-3
-##### 4. Make it work with lib-4
-##### 5. Make it work with lib-5
+Today, even there are linked, yarn doesn't support libraries that are not found on the registry. A hack is to remove dependencies from the package.json, do the yarn install and recreate the package.json...
 
 #### Improvments/Constraints :
-* For now, list and the order of libs are specified in the scripts/common.js. I should be better to scan packages dynamically and order the build based on the internal dependencies
 * AOT compatible
-* build and serve locally with links (npm or system)
-* build in CI env
-* test
-* manage inter dependencies
-* use common dependency version for all packages (like angular) specified by the parent
-* same version fo all lib
-
+* links between app and monorepo
+* avoiding scripts with hardcoded libs names
+* having one tsconfig per lib...but with ngc on lib-3, they are strange duplications
+* be able to publish
 
 #### Useful articles about mono repo :
 
