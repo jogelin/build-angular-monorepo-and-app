@@ -26,25 +26,29 @@ const copyAndExtendPackage = (moduleDistPath) => {
     //update info from parent
     log.info('PACKAGE FILE', 'update common properties');
     packageJson.version = parentPackageJson.version;
+    if(parentPackageJson.repository) packageJson.repository = parentPackageJson.repository;
+    if(parentPackageJson.publishConfig) packageJson.publishConfig = parentPackageJson.publishConfig;
 
     //resolve dependencies PLACEHOLDERS
-    log.info('PACKAGE FILE', 'replace peerDependencies placeholders');
-    Object.keys(parentPackageJson.peerDependenciesPlaceholders)
-        .forEach(placeHolderKey => {
-            const placeHolderValue = parentPackageJson.peerDependenciesPlaceholders[placeHolderKey];
-            Object.keys(packageJson.peerDependencies)
-                .forEach(peerDependencyKey => {
-                    const peerDependencyValue = packageJson.peerDependencies[peerDependencyKey];
-                    if(placeHolderKey === peerDependencyValue) {
-                        log.info('PACKAGE FILE', `PeerDependency ${peerDependencyKey} : ${placeHolderValue}`);
-                        packageJson.peerDependencies[peerDependencyKey] = placeHolderValue;
-                    }
-                    else if(peerDependencyValue === '0.0.0-VERSION_PLACEHOLDER') {
-                        log.info('PACKAGE FILE', `PeerDependency ${peerDependencyKey} : ${parentPackageJson.version}`);
-                        packageJson.peerDependencies[peerDependencyKey] = parentPackageJson.version;
-                    }
-                });
-        });
+    if(parentPackageJson.peerDependenciesPlaceholders) {
+        log.info('PACKAGE FILE', 'replace peerDependencies placeholders');
+        Object.keys(parentPackageJson.peerDependenciesPlaceholders)
+            .forEach(placeHolderKey => {
+                const placeHolderValue = parentPackageJson.peerDependenciesPlaceholders[placeHolderKey];
+                Object.keys(packageJson.peerDependencies)
+                    .forEach(peerDependencyKey => {
+                        const peerDependencyValue = packageJson.peerDependencies[peerDependencyKey];
+                        if(placeHolderKey === peerDependencyValue) {
+                            log.info('PACKAGE FILE', `PeerDependency ${peerDependencyKey} : ${placeHolderValue}`);
+                            packageJson.peerDependencies[peerDependencyKey] = placeHolderValue;
+                        }
+                        else if(peerDependencyValue === '0.0.0-VERSION_PLACEHOLDER') {
+                            log.info('PACKAGE FILE', `PeerDependency ${peerDependencyKey} : ${parentPackageJson.version}`);
+                            packageJson.peerDependencies[peerDependencyKey] = parentPackageJson.version;
+                        }
+                    });
+            });
+    }
 
     writeFileSync(packageFile, JSON.stringify(packageJson, null, 2));
 };

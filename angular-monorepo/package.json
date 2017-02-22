@@ -27,9 +27,9 @@
         "package": "npm run all -- \"rollup -c rollup.config.js\"",
         "copy": "ts-node ./scripts/copy.ts",
         "build": "npm-run-all clean bootstrap transpile package copy",
-        "build:dev": "npm-run-all clean transpile package link:all",
+        "build:dev": "npm-run-all clean transpile package unlink:all link:dist",
         "//":"****************************************************************************",
-        "publish": "ts-node ./scripts/publish.ts"
+        "publish": "npm run all:dist"
     },
     "repository": {
         "type": "git",
