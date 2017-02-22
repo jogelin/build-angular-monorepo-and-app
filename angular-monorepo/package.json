@@ -23,7 +23,7 @@
         "//":"****************************************************************************",
         "bootstrap": "oao bootstrap -s ./packages/*/",
         "//":"****************************************************************************",
-        "transpile": "npm run all \"ngc -p ./tsconfig.json && rollup -c rollup.config.js\"",
+        "transpile": "npm run all \"ngc -p ./tsconfig.json\"",
         "package": "npm run all -- \"rollup -c rollup.config.js\"",
         "copy": "ts-node ./scripts/copy.ts",
         "build": "npm-run-all clean bootstrap transpile package copy",
