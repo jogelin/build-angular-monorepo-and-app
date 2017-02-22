@@ -14,9 +14,7 @@ export default {
     ],
     external: [
         "@angular/core",
-        "rxjs",
-        "rxjs/Observable"
-
+        "@angular/http"
     ],
     onwarn: (warning) => {
         const skip_codes = [
