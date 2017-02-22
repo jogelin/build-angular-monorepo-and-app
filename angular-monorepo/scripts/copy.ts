@@ -3,21 +3,49 @@ import {readFileSync, writeFileSync} from 'fs';
 import {log, doAll, cfg} from './common';
 
 const copy = (modulePath, moduleDistPath) => {
-    copyPackage(moduleDistPath);
+    copyAndExtendPackage(moduleDistPath);
     copyReadme(moduleDistPath);
 };
 
-const copyPackage = (moduleDistPath) => {
-    log.info('COPY PACKAGE FILE', 'copy to dist');
-
+const copyAndExtendPackage = (moduleDistPath) => {
+    log.info('PACKAGE FILE', 'copy to dist');
     cp(`package.json`, `./../../${moduleDistPath}/package.json`);
 
     //cleanup
-    log.info('BUNDLE PACKAGE FILE', 'cleanup');
     const packageFile = `./../../${moduleDistPath}/package.json`;
     const packageJson = JSON.parse(readFileSync(packageFile).toString());
+
+    const parentPackageFile = `./../../package.json`;
+    const parentPackageJson = JSON.parse(readFileSync(parentPackageFile).toString());
+
+    //cleanup lib package
+    log.info('PACKAGE FILE', 'cleanup');
     delete packageJson.devDependencies;
     delete packageJson.scripts;
+
+    //update info from parent
+    log.info('PACKAGE FILE', 'update common properties');
+    packageJson.version = parentPackageJson.version;
+
+    //resolve dependencies PLACEHOLDERS
+    log.info('PACKAGE FILE', 'replace peerDependencies placeholders');
+    Object.keys(parentPackageJson.peerDependenciesPlaceholders)
+        .forEach(placeHolderKey => {
+            const placeHolderValue = parentPackageJson.peerDependenciesPlaceholders[placeHolderKey];
+            Object.keys(packageJson.peerDependencies)
+                .forEach(peerDependencyKey => {
+                    const peerDependencyValue = packageJson.peerDependencies[peerDependencyKey];
+                    if(placeHolderKey === peerDependencyValue) {
+                        log.info('PACKAGE FILE', `PeerDependency ${peerDependencyKey} : ${placeHolderValue}`);
+                        packageJson.peerDependencies[peerDependencyKey] = placeHolderValue;
+                    }
+                    else if(peerDependencyValue === '0.0.0-VERSION_PLACEHOLDER') {
+                        log.info('PACKAGE FILE', `PeerDependency ${peerDependencyKey} : ${parentPackageJson.version}`);
+                        packageJson.peerDependencies[peerDependencyKey] = parentPackageJson.version;
+                    }
+                });
+        });
+
     writeFileSync(packageFile, JSON.stringify(packageJson, null, 2));
 };
 
