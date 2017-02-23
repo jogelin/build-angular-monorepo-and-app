@@ -29,7 +29,9 @@
         "build": "npm-run-all clean bootstrap transpile package copy",
         "build:dev": "npm-run-all clean transpile package unlink:all link:dist",
         "//":"****************************************************************************",
-        "publish": "npm run all:dist"
+        "publish": "npm run all:dist",
+        "_docker": "npm install yarn -g --progress=false && npm install && yarn run build"
+
     },
     "repository": {
         "type": "git",
