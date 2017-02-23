@@ -1,0 +1,9 @@
+version: '3'
+services:
+  js-build:
+    container_name: oao-docker-js-build
+    image: node:7.5.0
+    command: npm run _docker
+    working_dir: /home/app
+    volumes:
+      - .:/home/app
