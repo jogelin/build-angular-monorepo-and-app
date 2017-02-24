@@ -26,8 +26,8 @@
         "transpile": "ngc -p ./packages/tsconfig.json",
         "package": "npm run all -- \"rollup -c rollup.config.js\"",
         "copy": "ts-node ./scripts/copy.ts",
-        "build": "npm-run-all clean bootstrap transpile package",
-        "build:dev": "npm-run-all clean transpile package unlink:all link:dist",
+        "build": "npm-run-all clean bootstrap transpile package copy",
+        "build:dev": "npm-run-all clean transpile package copy unlink:all link:dist",
         "//":"****************************************************************************",
         "publish": "npm run all:dist",
         "_docker": "npm install yarn -g --progress=false && npm install && yarn run build"

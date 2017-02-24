@@ -53,6 +53,14 @@ The goal is to be able to build all packages in a single command : npm run build
 
 Today, even there are linked, yarn doesn't support libraries that are not found on the registry. A hack is to remove dependencies from the package.json, do the yarn install and recreate the package.json...
 
+### Scripts
+OAO doesn't do the building/packaging of our libraries, some steps need to be executed before publishing :
+* transpile code using `ngc`
+* package code using `rollup`
+* copy static files :
+  * copy and clean the package.json. Also replacing placeholders version to have common versions
+  * copy the README.md
+
 ## TODO/Constraints :
 * AOT compatible
 * links between app and monorepo
