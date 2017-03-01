@@ -34,9 +34,10 @@
       "build:dev": "npm-run-all clean transpile package copy unlink:all link:dist",
       "publish": "ts-node ./scripts/publish.ts",
       "//DOCKER": "****************************************************************************",
-      "_docker:build": "npm install yarn -g --progress=false && npm install && yarn run build",
-      "_docker:test": "echo \"NOT IMPLEMENTED : npm run all -- yarn run test\"",
-      "_docker:publish": "npm run pulish"
+      "_docker:bootstrap": "npm install yarn -g --progress=false && npm install",
+      "_docker:build": "npm run _docker:bootstrap && yarn run build",
+      "_docker:test": "npm run _docker:bootstrap && echo \"NOT IMPLEMENTED : npm run all -- yarn run test\"",
+      "_docker:publish": "npm run _docker:bootstrap && npm run pulish"
     },
     "repository": {
         "type": "git",
