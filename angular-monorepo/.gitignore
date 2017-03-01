@@ -46,6 +46,10 @@ Thumbs.db
 #Angular
 /**/*.ngfactory.ts
 /**/*.ngsummary.json
+/**/*.metadata.json
+/**/*.js
+!/**/rollup.config.js
+!/scripts/*.js
 
 #Lerna
 lerna-debug.log
